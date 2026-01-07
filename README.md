@@ -13,3 +13,6 @@ To run the source code locally via flet
 - github
 - Infos über Burgen Seite füllen.
 
+# Erledigte TODO:
+- Button um Daten zu löschen vom Verlauf "Verlauf löschen" unter dem Abbildung aktualisieren
+

@@ -179,7 +179,8 @@ def main(page):
                 pc.set_facecolor(PrimaryColor)
                 pc.set_edgecolor('black')
             
-            vert.value = f"Gewünschter Redefluss von {times[0]} bis {times[-1]}."
+            page.open(ft.SnackBar(ft.Text(f"Verlaufsabbildungen auf dem neusten Stand. 📊")))
+            vert.value = f"Gewünschter Redefluss von {np.datetime64(times[0], 's')} bis {np.datetime64(times[-1], 's')}."
             trfig.update()
         elif len(trdata) == 1:
             vert.value = f"Bisher erst einen Datenpunkt. Bitte weitere Daten mit dem Schieberegler erzeugen."
@@ -198,13 +199,20 @@ def main(page):
         text_align=ft.TextAlign.CENTER)
     
     
+    def del_trend(_):
+        trdata.clear()
+        page.open(ft.SnackBar(ft.Text(f"Verlauf gelöscht. 🗑️")))
+        ax2[0].clear() # necessary otherwise figure content not deleted, see function trend(_) for len(trdata)==0.
+        ax2[1].clear()
+        trfig.update()
+        trend(_)
     
-    # -------- BottomSheet   --------
+    # -------- BottomSheet and Github Link   --------
     bottomsheet = ft.BottomSheet(
         ft.Container(
             ft.Column(
                 [
-                    ft.Text("Erstellt für Oli von Daniel. ❤️ \nGutschein zur Programmierung geschenkt zu Olis 23. Geburtstag am 20.08.2025.",
+                    ft.Text("Erstellt für Oli von Daniel. ❤️ \nGutschein zur Programmierung geschenkt zu Olis 23. Geburtstag am 20.08.2025. \nDaniel Schöndorf, 2026",
                         text_align=ft.TextAlign.CENTER),
                     ft.ElevatedButton("Alles klar!", on_click=lambda _: page.close(bottomsheet)),
                 ],
@@ -215,8 +223,90 @@ def main(page):
         ),
         open=False
     )
+    
+    def open_repo(e):
+        page.launch_url('https://github.com/Biotit/')
+    
+    bottomsheet_quellcode = ft.BottomSheet(
+        ft.Container(
+            ft.Column(
+                [
+                    ft.Text("Quellcode auf Github",
+                        text_align=ft.TextAlign.CENTER),
+                    #ft.ElevatedButton("Öffne Quellcode", on_click=open_repo)
+                    ft.IconButton(icon=ft.icons.CODE, on_click=open_repo),
+                    ft.Text(spans=[
+                        ft.TextSpan("Von Daniel Schöndorf 2026\nmit "),
+                        ft.TextSpan("Flet", url="https://github.com/flet-dev",
+                            style=ft.TextStyle(
+                                color=PrimaryColor,
+                                decoration=ft.TextDecoration.UNDERLINE)),
+                        ft.TextSpan(" (Apache License 2.0) erstellt.")
+                        ], text_align=ft.TextAlign.CENTER),
+                    #ft.Text("Von\nDaniel Schöndorf, 2026\nmit Flet erstellt.",
+                     #   text_align=ft.TextAlign.CENTER),
+                    ft.ElevatedButton("Jetzt nicht.", on_click=lambda _: page.close(bottomsheet_quellcode)),
+                ],
+                horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                tight=True,
+            ),
+            padding=50,
+        ),
+        open=False
+    )
+    
+    
     page.overlay.append(bottomsheet)
-
+    
+    # -------- Navigation rail on Infos über Burgen -----
+    
+    rail = ft.NavigationRail(
+        selected_index=0,
+        label_type=ft.NavigationRailLabelType.ALL,
+        min_width=100,
+        min_extended_width=400,
+        #leading=ft.FloatingActionButton(
+        #    icon=ft.icons.CREATE, text="Add", on_click=lambda e: print("FAB clicked!")
+        #),
+        group_alignment=-0.9,
+        destinations=[
+            ft.NavigationRailDestination(
+                icon=ft.icons.FORT_OUTLINED,
+                selected_icon=ft.icons.FORT,
+                label_content=ft.Text("Geschichte\n&\nBauformen", text_align=ft.TextAlign.CENTER),
+            ),
+            ft.NavigationRailDestination(
+                icon=ft.icons.LIBRARY_BOOKS_OUTLINED,
+                selected_icon=ft.icons.LIBRARY_BOOKS,
+                label_content=ft.Text("Daniels\nBurgenbuch", text_align=ft.TextAlign.CENTER),
+            ),
+            ft.NavigationRailDestination(
+                icon=ft.icons.MAP_OUTLINED,
+                selected_icon=ft.icons.MAP,
+                label_content=ft.Text("OpenStreetMap"),
+            ),
+        ],
+        on_change=lambda e: nav_changed(e, views=infosburgen))
+    
+    # -------- Infos über Burgen Seiten  --------
+    
+    infob_1 = ft.Column(controls=[
+                            ft.Text('Geschichte & Bauformen', 
+                                theme_style=ft.TextThemeStyle.HEADLINE_SMALL)
+                            ], visible=True, expand=True,
+                            horizontal_alignment=ft.CrossAxisAlignment.START,
+                            alignment=ft.MainAxisAlignment.START)
+    infob_2 = ft.Column(controls=[
+                            ft.Text('Daniels Burgenbuch',
+                                theme_style=ft.TextThemeStyle.HEADLINE_SMALL)
+                            ], visible=False, expand=True)
+    infob_3 = ft.Column(controls=[
+                            ft.Text('OpenStreetMap', 
+                                theme_style=ft.TextThemeStyle.HEADLINE_SMALL)
+                            ], visible=False, expand=True)
+    infosburgen = [infob_1, infob_2, infob_3]
+    
+    
     # -------- Page layouts  --------
     
 
@@ -257,7 +347,8 @@ def main(page):
                 ft.Container(content=trfig, width=800, height=600)
             ], expand=2, horizontal_alignment=ft.CrossAxisAlignment.CENTER),
             ft.Column(controls=[
-                ft.ElevatedButton("Update Trend", on_click=trend)
+                ft.ElevatedButton("Update Trend", on_click=trend),
+                ft.ElevatedButton("Verlauf löschen", on_click=del_trend)
             ], expand=0.5),
             ft.Divider(leading_indent=15, trailing_indent=15)
         ])
@@ -267,9 +358,17 @@ def main(page):
 
     infos_view = ft.Column(
         controls=[
-            ft.Text("Infos über Burgen"),
-            ft.Divider(leading_indent=15, trailing_indent=15)
-        ],
+            ft.Row(controls=[
+                ft.Container(
+                    content=rail,
+                    height=page.height,
+                 ),
+                ft.VerticalDivider(width=1),
+                ft.Container(
+                    content=ft.Column(controls=infosburgen), # directly pass list as control list
+                    height=page.height)
+                ])
+        ], expand=True,
         visible=False,
     )
 
@@ -278,7 +377,7 @@ def main(page):
 
     # -------- Navigation/Top and bottom bars  --------
 
-    def nav_changed(e):
+    def nav_changed(e, views=views):
         for i, view in enumerate(views):
             view.visible = i == e.control.selected_index
         page.update()
@@ -288,18 +387,18 @@ def main(page):
         on_change=nav_changed,
         destinations=[
             ft.NavigationBarDestination(
-                icon=ft.icons.SETTINGS_VOICE,
-                selected_icon=ft.icons.SETTINGS_VOICE_OUTLINED,
+                icon=ft.icons.SETTINGS_VOICE_OUTLINED,
+                selected_icon=ft.icons.SETTINGS_VOICE,
                 label="Einstellung",
             ),
             ft.NavigationBarDestination(
-                icon=ft.icons.MY_LIBRARY_BOOKS,
-                selected_icon=ft.icons.MY_LIBRARY_BOOKS_OUTLINED,
+                icon=ft.icons.MY_LIBRARY_BOOKS_OUTLINED,
+                selected_icon=ft.icons.MY_LIBRARY_BOOKS,
                 label="Verlauf",
             ),
             ft.NavigationBarDestination(
-                icon=ft.icons.CASTLE,
-                selected_icon=ft.icons.CASTLE_OUTLINED,
+                icon=ft.icons.CASTLE_OUTLINED,
+                selected_icon=ft.icons.CASTLE,
                 label="Infos über Burgen",
             ),
         ],
@@ -321,6 +420,9 @@ def main(page):
                     ft.PopupMenuItem(
                         text="Info", checked=None, on_click=lambda e: page.open(bottomsheet)
                     ),
+                    ft.PopupMenuItem(
+                        text="Quellcode", checked=None, on_click=lambda e: page.open(bottomsheet_quellcode)
+                    )
                 ]
             ),
         ],
