@@ -30,14 +30,14 @@ However, additional installations are necessary. So for apk flutter needs to be 
 ### Cloudflare
 This app is shall also be hosted on cloadflare as webapp.
 
-##❗Features
-# Slider
+## ❗Features
+### Slider
 The slider provides the option to set an individual `Redeflusslevel` for Daniel (how much Oliver wishes him to speak). However, Daniel might or might not follow this suggestion. On the same page, there is a histogram displaying the likely distribution of Daniels `Redefluss`, because the distribution is spread around this optimal level. Additionally, further text fields allow to change the width and samples of the displayed distribution.
 
-# Trend
+### Trend
 Figure showing the trend of the set `Redeflusslevel` over time (after updating via button), as well as a violin plot of the set Redefluss values. Additionally, an option exist to delete the trend.
 
-# Information about castles
+### Information about castles
 Since most people (including Oliver) are characterised by their lack of knowledge about castles, this page gives helpful information about the history and architecture of castles, as well as the book of Daniel listing all castles hes been to (Burgenbuch), and how castles are mapped within OpenStreetmap.
 
 
