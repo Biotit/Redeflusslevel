@@ -26,12 +26,12 @@ def infos(page):
             ft.NavigationRailDestination(
                 icon=ft.icons.LIBRARY_BOOKS_OUTLINED,
                 selected_icon=ft.icons.LIBRARY_BOOKS,
-                label_content=ft.Text("Burgenbuch\n&\nGermanCastleProductions", text_align=ft.TextAlign.CENTER),
+                label_content=ft.Text("Burgenbuch\n&\nGCP", text_align=ft.TextAlign.CENTER),
             ),
             ft.NavigationRailDestination(
                 icon=ft.icons.MAP_OUTLINED,
                 selected_icon=ft.icons.MAP,
-                label_content=ft.Text("OpenStreetMap"),
+                label_content=ft.Text("OSM"),
             ),
         ],
         on_change=lambda e: nav_changed(e, views=infosburgen))
