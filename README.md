@@ -41,7 +41,7 @@ The slider provides the option to set an individual `Redeflusslevel` for Daniel 
 Figure showing the trend of the set `Redeflusslevel` over time (after updating via button), as well as a violin plot of the set Redefluss values. Additionally, an option exist to delete the trend.
 
 ### Information about castles
-Since most people (including Oliver) are characterised by their lack of knowledge about castles, this page gives helpful information about the history and architecture of castles, as well as the book of Daniel listing all castles hes been to (Burgenbuch), and how castles are mapped within OpenStreetmap.
+Since most people (including Oliver) are characterised by their lack of knowledge about castles, this page gives helpful information about the history and architecture of castles, as well as the book of Daniel listing all castles hes been to (Burgenbuch), his castle Youtube channel GermanCastleProductions, and how castles are mapped within OpenStreetmap.
 
 
 
