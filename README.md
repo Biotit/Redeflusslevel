@@ -16,6 +16,9 @@ conda activate app_oli
 flet run main.py
 ```
 
+### Run for test on Android
+Install flet App on your Android device. Then run on a machine in the same network: `flet run --android` and scan the QR code with your Android device.
+
 ### Run using the synchronisation between page sessions
 The app can be run several times on the same port, when using the web app.
 ```
@@ -27,8 +30,8 @@ Now, changes in the slider get synchronised to the other open instance.
 It is possible to build the app for Windows, Linux, Android and iOS, e.g. for Android via `flet build apk PATH_TO_PROGRAMM_FOLDER`.
 However, additional installations are necessary. So for apk flutter needs to be installed and initialized, as well as android-sdk and sdkmanager.
 
-### Cloudflare
-This app is shall also be hosted on cloadflare as webapp.
+### Replit
+This app is available via Replit on https://redeflusslevel--biotit.replit.app/.
 
 ## ❗Features
 ### Slider

@@ -117,16 +117,18 @@ def einstellung(page, trdata, PrimaryColor):
 
     # -------- Summarizing and return   --------
     einstellung_view = ft.Column(controls=[
-        ft.Row(
+        ft.ResponsiveRow(
             controls=[
-                ft.Divider(leading_indent=15, trailing_indent=15),
                 ft.Column(
                 controls=[
-                    ft.Text("Gewünschte Redeflusszeit von Daniel (%)", theme_style=ft.TextThemeStyle.HEADLINE_SMALL),
+                    ft.Text("Gewünschte Redeflusszeit von Daniel (%)", 
+                        theme_style=ft.TextThemeStyle.HEADLINE_SMALL,
+                        text_align=ft.TextAlign.CENTER),
                     slid,
                     t,
                     ft.Container(content=hist, width=500, height=500)
                     ],
+                    col={"sm": 12, "md": 9},
                     expand=2,
                     horizontal_alignment=ft.CrossAxisAlignment.CENTER
             ),
@@ -137,7 +139,9 @@ def einstellung(page, trdata, PrimaryColor):
                     ns,
                     std,
                 ],
-                horizontal_alignment=ft.CrossAxisAlignment.START
+                col={"sm": 12, "md": 3},
+                alignment=ft.MainAxisAlignment.CENTER,
+                horizontal_alignment=ft.CrossAxisAlignment.CENTER
             )
         ], expand=True),
         ],

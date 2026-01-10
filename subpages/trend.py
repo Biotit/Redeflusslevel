@@ -66,18 +66,21 @@ def trend(page, trdata, PrimaryColor):
     
     # -------- Summary and return --------
     trend_view = ft.Column(controls=[
-        ft.Row(controls=[
-            ft.Divider(leading_indent=15, trailing_indent=15),
+        ft.ResponsiveRow(controls=[
             ft.Column(controls=[
                 ft.Text("Verlauf", theme_style=ft.TextThemeStyle.HEADLINE_SMALL),
                 vert,
                 ft.Container(content=trfig, width=800, height=600)
-            ], expand=2, horizontal_alignment=ft.CrossAxisAlignment.CENTER),
+            ], 
+            col={"sm": 12, "md": 9},
+            expand=2, horizontal_alignment=ft.CrossAxisAlignment.CENTER),
             ft.Column(controls=[
                 ft.ElevatedButton("Update Trend", on_click=trend),
                 ft.ElevatedButton("Verlauf löschen", on_click=del_trend)
-            ], expand=0.5),
-            ft.Divider(leading_indent=15, trailing_indent=15)
+            ], 
+            expand=0.5, col={"sm": 12, "md": 3},
+            horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+            alignment=ft.MainAxisAlignment.CENTER)
         ])
         ],
         visible=False,
