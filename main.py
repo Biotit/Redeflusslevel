@@ -3,7 +3,7 @@ import subpages # import module for the subpages of the app
 
 def main(page):
     page.title = "Olis Kontrollapp über Daniels Redefluss"
-    page.scroll = ft.ScrollMode.ADAPTIVE
+    page.scroll = ft.ScrollMode.AUTO
 
 
     # -------- Theme  -----------
