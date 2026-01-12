@@ -35,14 +35,14 @@ flet run --web --port 8000 main.py
 ```
 Now, changes in the slider get synchronised to the other open instance.
 
-### Built for own device
+### Build for own device
 It is possible to build the app for Linux, Windows, iOS and Android. Tested already for Android (apk).
 For Android, run via
 ```
 flet build apk
 ```
 Necessary programs get installed automatically: Flutter, JDK, Android SDK.
-The specific settings for the building are given inside pyproject.toml.
+The specific settings for building are given inside `pyproject.toml`.
 The built apk will then be provided within the newly created `build` folder.
 For already build apk see releases of this repository.
 
