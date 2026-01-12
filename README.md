@@ -42,8 +42,10 @@ For Android, run via
 flet build apk
 ```
 Necessary programs get installed automatically: Flutter, JDK, Android SDK.
-The built apk is already provided within the `build` folder.
 The specific settings for the building are given inside pyproject.toml.
+The built apk will then be provided within the newly created `build` folder.
+For already build apk see releases of this repository.
+
 
 ### Replit
 This app is available via Replit on https://redeflusslevel--biotit.replit.app/.

@@ -1,6 +1,6 @@
 [project]
 name = "Redeflusslevel"
-version = "0.0.1"
+version = "0.1.0"
 description = "Redeflusslevel provides a way for Oliver to give Daniel suggestions about his amount of talking."
 authors = [
   {name = "Daniel Schöndorf"}
