@@ -9,26 +9,41 @@ git clone https://github.com/Biotit/Redeflusslevel
 
 ### Run locally
 To run the source code locally via flet, create an environment and install flet, as well as matplotlib and numpy.
-Or if using conda
+The specific versions are given inside requirements.txt or pyproject.toml. These specific versions are very important otherwise the code, and e.g. especially building apk does not work! Runtime.txt specifies the python version.
+
+Or if using conda on a linux machine you can recreate my environment via
 ```
-conda env create -f conda/environment.yaml
-conda activate app_oli
+conda env create -f environment.yaml
+conda activate App_Oli
+cd src
 flet run main.py
 ```
 
 ### Run for test on Android
-Install flet App on your Android device. Then run on a machine in the same network: `flet run --android` and scan the QR code with your Android device.
+Install flet App on your Android device. Then run on a machine in the same network: 
+```
+cd src
+flet run --android` 
+```
+and scan the QR code with your Android device.
 
 ### Run using the synchronisation between page sessions
 The app can be run several times on the same port, when using the web app.
 ```
+cd src
 flet run --web --port 8000 main.py
 ```
 Now, changes in the slider get synchronised to the other open instance.
 
-### Built app for own device
-It is possible to build the app for Windows, Linux, Android and iOS, e.g. for Android via `flet build apk PATH_TO_PROGRAMM_FOLDER`.
-However, additional installations are necessary. So for apk flutter needs to be installed and initialized, as well as android-sdk and sdkmanager.
+### Built for own device
+It is possible to build the app for Linux, Windows, iOS and Android. Tested already for Android (apk).
+For Android, run via
+```
+flet build apk
+```
+Necessary programs get installed automatically: Flutter, JDK, Android SDK.
+The built apk is already provided within the `build` folder.
+The specific settings for the building are given inside pyproject.toml.
 
 ### Replit
 This app is available via Replit on https://redeflusslevel--biotit.replit.app/.

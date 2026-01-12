@@ -14,23 +14,23 @@ def infos(page):
         min_width=100,
         min_extended_width=400,
         #leading=ft.FloatingActionButton(
-        #    icon=ft.icons.CREATE, text="Add", on_click=lambda e: print("FAB clicked!")
+        #    icon=ft.Icons.CREATE, text="Add", on_click=lambda e: print("FAB clicked!")
         #),
         group_alignment=-0.9,
         destinations=[
             ft.NavigationRailDestination(
-                icon=ft.icons.FORT_OUTLINED,
-                selected_icon=ft.icons.FORT,
+                icon=ft.Icons.FORT_OUTLINED,
+                selected_icon=ft.Icons.FORT,
                 label_content=ft.Text("Geschichte\n&\nBauformen", text_align=ft.TextAlign.CENTER),
             ),
             ft.NavigationRailDestination(
-                icon=ft.icons.LIBRARY_BOOKS_OUTLINED,
-                selected_icon=ft.icons.LIBRARY_BOOKS,
+                icon=ft.Icons.LIBRARY_BOOKS_OUTLINED,
+                selected_icon=ft.Icons.LIBRARY_BOOKS,
                 label_content=ft.Text("Burgenbuch\n&\nGCP", text_align=ft.TextAlign.CENTER),
             ),
             ft.NavigationRailDestination(
-                icon=ft.icons.MAP_OUTLINED,
-                selected_icon=ft.icons.MAP,
+                icon=ft.Icons.MAP_OUTLINED,
+                selected_icon=ft.Icons.MAP,
                 label_content=ft.Text("OSM"),
             ),
         ],

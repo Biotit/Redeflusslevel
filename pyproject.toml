@@ -1,0 +1,22 @@
+[project]
+name = "Redeflusslevel"
+version = "0.0.1"
+description = "Redeflusslevel provides a way for Oliver to give Daniel suggestions about his amount of talking."
+authors = [
+  {name = "Daniel Schöndorf"}
+]
+dependencies = ["flet==0.27.2","matplotlib==3.10.0","numpy==1.26.4"]
+
+[tool.flet]
+product = "Redeflusslevel"
+
+[tool.flet.app]
+path = "src"
+
+[tool.flet.splash]
+color = "#ffffff"
+dark_color = "#ffffff" # no dark mode for splash screen
+
+# error while building apk: https://github.com/flet-dev/flet/issues/5649
+[tool.flet.flutter.pubspec.dependency_overrides]
+webview_flutter_android = "4.10.0"

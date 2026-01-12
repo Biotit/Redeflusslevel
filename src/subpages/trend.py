@@ -27,12 +27,12 @@ def trend(page, trdata, PrimaryColor):
             ax2[1].set_xlabel("Wahrscheinlichkeits-\ndichtefunktion")
             violin_parts = ax2[1].violinplot(values, showmeans = True, showextrema = True, showmedians = True)
             
-            # Violin marker statistics colors
+            # Violin marker statistics Colors
             for partname in ('cbars','cmins','cmaxes', 'cmeans','cmedians'):
                 vp = violin_parts[partname]
                 vp.set_edgecolor(PrimaryColor)
             
-            # main colors of the violin
+            # main Colors of the violin
             for pc in violin_parts['bodies']:
                 pc.set_facecolor(PrimaryColor)
                 pc.set_edgecolor('black')
@@ -50,7 +50,7 @@ def trend(page, trdata, PrimaryColor):
             
     
     fig2, ax2 = plt.subplots(1, 2, sharey=True, width_ratios=[3, 1], figsize=(6, 4), constrained_layout=True)
-    trfig = MatplotlibChart(fig2, expand=True, isolated=True) # plotting trend data
+    trfig = MatplotlibChart(figure=fig2, expand=True, isolated=True) # plotting trend data
 
     
     vert = ft.Text("Noch keine Daten.", 
@@ -117,12 +117,12 @@ def trend(page, trdata, PrimaryColor):
                 ft.ElevatedButton("Gespeicherten Verlauf laden", on_click=load_trend),
                 ft.ElevatedButton("Aktuellen Verlauf löschen", on_click=del_trend,
                     style=ft.ButtonStyle(
-                        bgcolor=ft.colors.RED_400,
-                        color=ft.colors.WHITE)),
+                        bgcolor=ft.Colors.RED_400,
+                        color=ft.Colors.WHITE)),
                 ft.ElevatedButton("Gespeicherten Verlauf löschen", 
                     on_click=del_saved_trend, style=ft.ButtonStyle(
-                        bgcolor=ft.colors.RED_400,
-                        color=ft.colors.WHITE))
+                        bgcolor=ft.Colors.RED_400,
+                        color=ft.Colors.WHITE))
             ], 
             expand=0.5, col={"sm": 12, "md": 3},
             horizontal_alignment=ft.CrossAxisAlignment.CENTER,

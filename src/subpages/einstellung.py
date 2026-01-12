@@ -79,11 +79,11 @@ def einstellung(page, trdata, PrimaryColor):
         page.close(banner)
     
     banner = ft.Banner(
-        #bgcolor=ft.colors.AMBER_100,
-        leading=ft.Icon(ft.icons.WARNING_AMBER_ROUNDED, size=40), # color=ft.colors.AMBER,
+        #bgcolor=ft.Colors.AMBER_100,
+        leading=ft.Icon(ft.Icons.WARNING_AMBER_ROUNDED, size=40), # color=ft.Colors.AMBER,
         content=ft.Text(
             "Anleitung: Am folgenden Schieberegler durch Schieben nach rechts oder links das gewünschte Redeflusslevel von Daniel auswählen. Das Redeflusslevel kennzeichnet den angestrebten Anteil an gemeinsam verbrachter Zeit in der Daniel redet. Daniels tatsächliches Redeflusslevel kann durch eine Normalverteilung beschrieben werden, die sich um den eingestellten Wert als Mittelwert verteilt. Im Histogram wird diese beispielhaft beschrieben. Standardmäßig beschreibt das Histogram eine Normalverteilung mit 100 Proben, und einer Streuung von einer Standardabweichung. Um es zu präzisieren können auch manuell andere Werte eingegeben werden.\n \n Achtung! Zum Verändern des Werts den Slider schieben und an der gewünschten neuen Position loslassen, nicht einfach auf eine andere Position klicken!",
-            color=ft.colors.BLACK,
+            color=ft.Colors.BLACK,
         ),
         actions=[
             ft.TextButton("OK", on_click=close_banner),
@@ -111,7 +111,7 @@ def einstellung(page, trdata, PrimaryColor):
             send() # only if new set value, send new values to other instances. Otherwise would end in loop between instances...
 
     fig, ax = plt.subplots(figsize=(4, 3), constrained_layout=True)
-    hist = MatplotlibChart(fig, expand=True, isolated=True)
+    hist = MatplotlibChart(figure=fig, expand=True, isolated=True)
     ns = ft.TextField(label="Anzahl an Proben von einer Normalverteilung", on_blur=histogr)
     std = ft.TextField(label="Streuung der Normalverteilung", on_blur=histogr)
 

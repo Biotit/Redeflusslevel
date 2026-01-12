@@ -11,7 +11,7 @@ def main(page):
         "AtkinsonHyperlegibleNext":"fonts/AtkinsonHyperlegibleNext-Regular.ttf"
     }
 
-    PrimaryColor = ft.colors.GREEN
+    PrimaryColor = ft.Colors.GREEN
     page.theme_mode = ft.ThemeMode.LIGHT
     page.theme = ft.Theme(
         color_scheme_seed=PrimaryColor,
@@ -20,23 +20,23 @@ def main(page):
     
     def apply_bg():
         if page.theme_mode == ft.ThemeMode.DARK:
-            page.bgcolor = "#121B2F" #ft.colors.BLACK
+            page.bgcolor = "#121B2F" #ft.Colors.BLACK
         else:
-            page.bgcolor = ft.colors.WHITE
+            page.bgcolor = ft.Colors.WHITE
     apply_bg()
 
     # -------- Switch dark and lightmode   --------
     def handle_switch_change(e): # change dark and light mode
         if page.theme_mode == ft.ThemeMode.DARK:
             page.theme_mode = ft.ThemeMode.LIGHT
-            switch.thumb_icon = ft.icons.LIGHT_MODE
+            switch.thumb_icon = ft.Icons.LIGHT_MODE
         else:
-            switch.thumb_icon = ft.icons.DARK_MODE
+            switch.thumb_icon = ft.Icons.DARK_MODE
             page.theme_mode = ft.ThemeMode.DARK
         apply_bg()
         page.update()
     
-    switch = ft.Switch(thumb_icon=ft.icons.DARK_MODE, on_change=handle_switch_change)
+    switch = ft.Switch(thumb_icon=ft.Icons.DARK_MODE, on_change=handle_switch_change)
     
     # -------- Data Saving --------
     trdata = [] # empty list for storing data and time as tuples, converted
@@ -69,7 +69,7 @@ def main(page):
                     ft.Text("Quellcode auf Github",
                         text_align=ft.TextAlign.CENTER),
                     #ft.ElevatedButton("Öffne Quellcode", on_click=open_repo)
-                    ft.IconButton(icon=ft.icons.CODE, on_click=open_repo),
+                    ft.IconButton(icon=ft.Icons.CODE, on_click=open_repo),
                     ft.Text(spans=[
                         ft.TextSpan("Von Daniel Schöndorf 2026\nmit "),
                         ft.TextSpan("Flet", url="https://github.com/flet-dev",
@@ -115,18 +115,18 @@ def main(page):
         on_change=nav_changed,
         destinations=[
             ft.NavigationBarDestination(
-                icon=ft.icons.SETTINGS_VOICE_OUTLINED,
-                selected_icon=ft.icons.SETTINGS_VOICE,
+                icon=ft.Icons.SETTINGS_VOICE_OUTLINED,
+                selected_icon=ft.Icons.SETTINGS_VOICE,
                 label="Einstellung",
             ),
             ft.NavigationBarDestination(
-                icon=ft.icons.MY_LIBRARY_BOOKS_OUTLINED,
-                selected_icon=ft.icons.MY_LIBRARY_BOOKS,
+                icon=ft.Icons.MY_LIBRARY_BOOKS_OUTLINED,
+                selected_icon=ft.Icons.MY_LIBRARY_BOOKS,
                 label="Verlauf",
             ),
             ft.NavigationBarDestination(
-                icon=ft.icons.CASTLE_OUTLINED,
-                selected_icon=ft.icons.CASTLE,
+                icon=ft.Icons.CASTLE_OUTLINED,
+                selected_icon=ft.Icons.CASTLE,
                 label="Infos über Burgen",
             ),
         ],
@@ -134,11 +134,11 @@ def main(page):
     
     
     page.appbar = ft.AppBar( # top bar
-        leading=ft.Icon(ft.icons.RECORD_VOICE_OVER),
+        leading=ft.Icon(ft.Icons.RECORD_VOICE_OVER),
         leading_width=40,
         title=ft.Text(page.title),
         center_title=False,
-        bgcolor=ft.colors.SURFACE_CONTAINER_HIGHEST,
+        bgcolor=ft.Colors.SURFACE_CONTAINER_HIGHEST,
         actions=[
             switch,
             ft.PopupMenuButton(
